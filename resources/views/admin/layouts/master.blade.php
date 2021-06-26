@@ -42,6 +42,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/customInputfield.css') }}" rel="stylesheet">
+
+    @stack('css')
 
 </head>
 
@@ -65,6 +68,10 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4 ml-5">
+                <h6 class="mb-0 "><span class="text-gray">@yield('title')</span> /<span class="breadcrumb-item active text-primary">@yield('page_title')</span></h6>
+            </div>
             @yield('content')
             <!-- /.container-fluid -->
 
