@@ -33,6 +33,24 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-6">
+                                            <label for="profile_image">profile Image</label>
+                                            <input type="file" class="form-control form-control-sm" name="profile_image">
+                                            @if($errors->has('profile_image'))
+                                                <span class="form-text">
+                                                    <strong class="text-danger form-control-sm">{{ $errors->first('profile_image') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="profile_banner">profile Banner</label>
+                                            <input type="file" class="form-control form-control-sm" name="profile_banner">
+                                            @if($errors->has('profile_banner'))
+                                                <span class="form-text">
+                                                    <strong class="text-danger form-control-sm">{{ $errors->first('profile_banner') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-6">
                                             <label for="first_name">First Name<span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control form-control-sm" name="first_name" value="{{ old('first_name') }}" placeholder="Ex: John" required>
                                             @if($errors->has('first_name'))
