@@ -55,7 +55,31 @@ class ProfileController extends Controller
         $profile = Profile::where('user_id',auth()->user()->id)->first();
 
         if($profile){
-            dd('hi');
+            $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'mobile' => 'required|min:11|max:11|unique:profiles,mobile,'.$profile->id,
+                'email' => 'required|email|unique:profiles,email,'.$profile->id
+            ]);
+
+            $data = $request->all();
+            $data['user_id'] = auth()->user()->id;
+
+            if($request->hasFile('profile_image')){
+                $this->unlink($profile->profile_image);
+                $data['profile_image'] = $this->upload($request->profile_image,'profile_image');
+            }
+            if($request->hasFile('profile_banner')){
+                $this->unlink1($profile->profile_banner);
+                $data['profile_banner'] = $this->upload1($request->profile_banner,'profile_banner');
+            }
+
+            $profile->update($data);
+
+            session()->flash('message','Profile updated successfully!');
+            session()->flash('alert-class','alert-success');
+
+            return back();
         }else{
             $request->validate([
                 'first_name' => 'required',

@@ -13,3 +13,5 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/uploads/profile_banner
+/uploads/profile_image

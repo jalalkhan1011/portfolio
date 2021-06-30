@@ -16,7 +16,7 @@
                                 <p class="text-info">See your profiles</p>
                             </div>
                             <div class="col-lg-6 text-right">
-                                <a href="{{ url('admin/profiles/create') }}" class="btn btn-sm btn-primary" title="Create New Profile"><i class="far fa-plus-square"></i> </a>
+                                <a href="{{ url('admin/profiles/create') }}" class="btn btn-sm btn-primary" title="Create New Profile or edit"><i class="far fa-plus-square"></i> </a>
                             </div>
                         </div>
                         <hr class="bg-primary">
@@ -44,7 +44,7 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item"><a href="" class="btn btn-sm btn-info" title="View"><i class="far fa-eye"></i></a> </li>
-                                            <li class="list-inline-item"><a href="" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-user-edit"></i></a> </li>
+                                            <li class="list-inline-item"><a href="{{ url('admin/profiles/'.$profiles->id.'/edit') }}" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-user-edit"></i></a> </li>
                                             <li class="list-inline-item">
                                                 <form class="" action="" method="post">
                                                     @csrf

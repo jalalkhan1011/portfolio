@@ -4,9 +4,6 @@
 @section('page_title','Create Profile')
 
 @section('content')
-    @push('css')
-
-    @endpush
     <section class="">
         <div class="container">
             <div class="row">
