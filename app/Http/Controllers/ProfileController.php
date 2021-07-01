@@ -21,9 +21,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::where('user_id',auth()->user()->id)->first();
+        $profile = Profile::where('user_id',auth()->user()->id)->first();
 
-        return view('admin.profiles.index',compact('profiles'));
+        if(!empty($profile))
+            return view('admin.profiles.edit',compact('profile'));
+        else
+            $user = Auth::user();
+
+        return view('admin.profiles.create',compact('user'));
     }
 
     /**
@@ -33,14 +38,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $profile = Profile::where('user_id',auth()->user()->id)->first();
-
-        if(!empty($profile))
-            return view('admin.profiles.edit',compact('profile'));
-        else
-            $user = Auth::user();
-
-            return view('admin.profiles.create',compact('user'));
+        //
 
     }
 

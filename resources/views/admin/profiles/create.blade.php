@@ -30,22 +30,32 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label for="profile_image">profile Image</label>
-                                            <input type="file" class="form-control form-control-sm" name="profile_image">
-                                            @if($errors->has('profile_image'))
-                                                <span class="form-text">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label for="profile_image">profile Image</label>
+                                                    <input type="file" class="pb-1" name="profile_image"  onchange="loadFile()">
+                                                    <img id="profile_image" class="image-preview" src="{{ asset('uploads/profile_image/') }}">
+                                                    @if($errors->has('profile_image'))
+                                                        <span class="form-text">
                                                     <strong class="text-danger form-control-sm">{{ $errors->first('profile_image') }}</strong>
                                                 </span>
-                                            @endif
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="profile_banner">profile Banner</label>
-                                            <input type="file" class="form-control form-control-sm" name="profile_banner">
-                                            @if($errors->has('profile_banner'))
-                                                <span class="form-text">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label for="profile_banner">profile Banner</label>
+                                                    <input type="file" class="pb-1" name="profile_banner" onchange="loadFile1()">
+                                                    <img id="profile_banner" class="image-preview" src="{{ asset('uploads/profile_banner/') }}">
+                                                    @if($errors->has('profile_banner'))
+                                                        <span class="form-text">
                                                     <strong class="text-danger form-control-sm">{{ $errors->first('profile_banner') }}</strong>
                                                 </span>
-                                            @endif
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="first_name">First Name<span class="text-danger">*</span> </label>
@@ -133,3 +143,16 @@
         </div>
     </section>
 @endsection
+@push('js')
+    <script>
+        var loadFile = function () {
+            var profile_image = document.getElementById('profile_image');
+            profile_image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        var loadFile1 = function () {
+            var profile_banner = document.getElementById('profile_banner');
+            profile_banner.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+@endpush
