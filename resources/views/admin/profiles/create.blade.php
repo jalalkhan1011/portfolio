@@ -33,8 +33,8 @@
                                             <div class="row">
                                                 <div class="col-lg-3">
                                                     <label for="profile_image">profile Image</label>
-                                                    <input type="file" class="pb-1" name="profile_image"  onchange="loadFile()">
-                                                    <img id="profile_image" class="image-preview" src="{{ asset('uploads/profile_image/') }}">
+                                                    <img id="profile_image" class="image-preview" src="{{ asset('default/Profile_avatar.png') }}">
+                                                    <input type="file" class="pt-1" name="profile_image"  onchange="loadFile()">
                                                     @if($errors->has('profile_image'))
                                                         <span class="form-text">
                                                     <strong class="text-danger form-control-sm">{{ $errors->first('profile_image') }}</strong>
@@ -47,8 +47,8 @@
                                             <div class="row">
                                                 <div class="col-lg-3">
                                                     <label for="profile_banner">profile Banner</label>
-                                                    <input type="file" class="pb-1" name="profile_banner" onchange="loadFile1()">
-                                                    <img id="profile_banner" class="image-preview" src="{{ asset('uploads/profile_banner/') }}">
+                                                    <img id="profile_banner" class="image-preview" src="{{ asset('default/banner_preview.png') }}">
+                                                    <input type="file" class="pt-1" name="profile_banner" onchange="loadFile1()">
                                                     @if($errors->has('profile_banner'))
                                                         <span class="form-text">
                                                     <strong class="text-danger form-control-sm">{{ $errors->first('profile_banner') }}</strong>
