@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +19,12 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/logout', 'SessionsController@logout');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){
     Route::resource('/admin/profiles',ProfileController::class);//resource route
+    Route::get('/admin/skills',[SkillController::class,'index']);
 });

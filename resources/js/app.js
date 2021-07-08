@@ -4,9 +4,17 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Vue from "vue";
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import VueRouter from "vue-router";
+
+
+
+window.Vue.use(VueRouter);
+Vue.config.productionTip = false
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +27,21 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import SkillIndex from './components/skills/SkillsComponents';
+
+const routes = [
+    {
+        path: '/admin/skills',
+        components: {
+            skillIndex: SkillIndex
+        }
+    },
+    // {path: '/admin/companies/create', component: CompaniesCreate, name: 'createCompany'},
+    // {path: '/admin/companies/edit/:id', component: CompaniesEdit, name: 'editCompany'},
+]
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +49,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+const router = new VueRouter({
+    routes,
+    mode: 'history'
+})
+
+// const app = new Vue({
+//     el: '#app',
+// });
+ new Vue({router}).$mount('#app');

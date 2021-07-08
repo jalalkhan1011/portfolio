@@ -50,7 +50,7 @@
 </head>
 
 <body id="page-top">
-
+<div id="app">
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -86,6 +86,7 @@
     </div>
     <!-- End of Content Wrapper -->
 
+</div>
 </div>
 <!-- End of Page Wrapper -->
 
