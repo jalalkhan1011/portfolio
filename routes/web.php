@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\ProjectController;
 
 
 /*
@@ -27,6 +28,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function(){
     Route::resource('/admin/profiles',ProfileController::class);//resource route
     Route::resource('/admin/skills',SkillController::class);
+    Route::resource('/admin/projects',ProjectController::class);
 });
 
 Route::get('{any}', function () {
