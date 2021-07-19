@@ -10,10 +10,13 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 import VueRouter from "vue-router";
+import VueAxios from "vue-axios";
+import axios from "axios";
 
 
 
 window.Vue.use(VueRouter);
+Vue.use(VueAxios,axios);
 Vue.config.productionTip = false
 
 /**
@@ -28,7 +31,8 @@ Vue.config.productionTip = false
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-import SkillIndex from './components/skills/SkillsComponents';
+import SkillIndex from './components/skills/SkillIndex';
+import SkillCreate from './components/skills/SkillCreate';
 
 const routes = [
     {
@@ -37,7 +41,11 @@ const routes = [
             skillIndex: SkillIndex
         }
     },
-    // {path: '/admin/companies/create', component: CompaniesCreate, name: 'createCompany'},
+    {
+        path: '/admin/skills/create',
+        component:SkillCreate,
+        name: 'createSkills'
+    },
     // {path: '/admin/companies/edit/:id', component: CompaniesEdit, name: 'editCompany'},
 ]
 
@@ -57,4 +65,4 @@ const router = new VueRouter({
 // const app = new Vue({
 //     el: '#app',
 // });
- new Vue({router}).$mount('#app');
+const app = new Vue({router}).$mount('#app');

@@ -14,7 +14,9 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return view('admin.skills.index');
+        $skills = Skill::where('user_id',auth()->user()->id)->get();
+
+        return view('admin.skills.index',compact('skills'));
     }
 
     /**
@@ -24,7 +26,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.skills.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:skills,title',
+        ]);
+
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        Skill::create($data);
+
+        session()->flash('message','Skill created successfully!');
+        session()->flash('alert-class','alert-success');
+
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +71,7 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        //
+        return view('admin.skills.edit',compact('skill'));
     }
 
     /**
@@ -69,7 +83,19 @@ class SkillController extends Controller
      */
     public function update(Request $request, Skill $skill)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        $skill->update($data);
+
+        session()->flash('message','Skill update successfully!');
+        session()->flash('alert-class','alert-success');
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +106,11 @@ class SkillController extends Controller
      */
     public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+
+        session()->flash('message','Skill Deleted successfully!');
+        session()->flash('alert-class','alert-danger');
+
+        return redirect('admin/skills');
     }
 }

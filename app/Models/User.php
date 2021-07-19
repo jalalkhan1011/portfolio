@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne('App\Models\Profile');
     }
+
+    public function skills(){
+        return $this->hasMany(Skill::class);
+    }
 }

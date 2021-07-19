@@ -26,5 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function(){
     Route::resource('/admin/profiles',ProfileController::class);//resource route
-    Route::get('/admin/skills',[SkillController::class,'index']);
+    Route::resource('/admin/skills',SkillController::class);
 });
+
+Route::get('{any}', function () {
+    return view('admin/layouts/master');
+})->where('any', '.*');

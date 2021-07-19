@@ -44,6 +44,7 @@
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customInputfield.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customcss.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
     @stack('css')
 
