@@ -38,6 +38,7 @@
                 <h6 class="collapse-header">User Profile:</h6>
                 <a class="collapse-item" href="{{ url('admin/profiles') }}">Profiles</a>
                 <a class="collapse-item" href="{{ url('admin/skills') }}">Skills</a>
+                <a class="collapse-item" href="{{ url('admin/projects') }}">Projects</a>
                 <a class="collapse-item" href="cards.html">Cards</a>
             </div>
         </div>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\ImageTraits;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    use ImageTraits;
+
+    const UPLOAD_DIR = '/uploads/project_image/';
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::where('user_id',auth()->user()->id)->get();
+
+        return view('admin.projects.index',compact('projects'));
     }
 
     /**
@@ -24,7 +30,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -35,7 +41,26 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif'
+        ]);
+
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        if($request->has('image')){
+            $data['image'] = $this->upload($request->image,'project_image');
+        }
+
+        Project::create($data);
+
+        session()->flash('message','Project created successfully!');
+        session()->flash('alert-class','alert-success');
+
+        return redirect('admin/projects');
+
     }
 
     /**
