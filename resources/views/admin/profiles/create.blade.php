@@ -130,6 +130,15 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-12">
+                                            <label for="about">About<span class="text-danger"></span> </label>
+                                            <textarea  class="form-control form-control-sm" name="about"  placeholder="Write something about yours..." rows="10"></textarea>
+                                            @if($errors->has('about'))
+                                                <span class="form-text">
+                                                    <strong class="text-danger form-control-sm">{{ $errors->first('about') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-12">
                                             <div class="text-right">
                                                 <button type="submit" class="btn btn-sm btn-primary">Save</button>
                                             </div>

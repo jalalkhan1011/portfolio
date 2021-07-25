@@ -59,3 +59,18 @@ select.form-control:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+input[type="search"],
+select.form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid blue;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+input[type="search"]:focus,
+select.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

@@ -82,7 +82,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit',compact('project'));
     }
 
     /**
@@ -94,7 +94,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif'
+        ]);
+
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        if($request->has('image')){
+            $this->unlink($project->image);
+            $data['image'] = $this->upload($request->image,'project_image');
+        }
+
+        $project->update($data);
+
+        session()->flash('message','Project updated successfully!');
+        session()->flash('alert-class','alert-success');
+
+        return redirect()->back();
     }
 
     /**
@@ -105,6 +124,12 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $this->unlink($project->image);
+        $project->delete();
+
+        session()->flash('message','Projects Deleted successfully!');
+        session()->flash('alert-class','alert-danger');
+
+        return redirect('admin/projects');
     }
 }

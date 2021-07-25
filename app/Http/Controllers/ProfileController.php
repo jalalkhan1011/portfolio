@@ -58,7 +58,8 @@ class ProfileController extends Controller
                 'last_name' => 'required',
                 'mobile' => 'required|min:11|max:11|unique:profiles,mobile,'.$profile->id,
                 'email' => 'required|email|unique:profiles,email,'.$profile->id,
-                'profile_image' => 'mimes:jpeg,jpg,png,gif'
+                'profile_image' => 'mimes:jpeg,jpg,png,gif',
+                'about' => 'required'
             ]);
 
             $data = $request->all();
@@ -85,7 +86,8 @@ class ProfileController extends Controller
                 'last_name' => 'required',
                 'mobile' => 'required|min:11|max:11|unique:profiles,mobile',
                 'email' => 'required|email|unique:profiles,email',
-                'profile_image' => 'mimes:jpeg,jpg,png,gif'
+                'profile_image' => 'mimes:jpeg,jpg,png,gif',
+                'about' => 'required'
             ]);
 
             $data = $request->all();

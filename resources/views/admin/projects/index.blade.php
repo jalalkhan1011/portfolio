@@ -27,34 +27,37 @@
                                 </div>
                             @endif
                             <div class="table-responsive">
-                                <table class="table table-striped" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th class="text-dark">Name</th>
-                                        <th class="text-dark">Mobile</th>
-                                        <th class="text-dark">Email</th>
+                                        <th class="text-dark">Sl.</th>
+                                        <th class="text-dark">Title</th>
+                                        <th class="text-dark">Description</th>
                                         <th class="text-dark">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-{{--                                    <tr>--}}
-{{--                                        <td>{{ $profiles->first_name.' '.$profiles->last_name }}</td>--}}
-{{--                                        <td>{{ $profiles->mobile }}</td>--}}
-{{--                                        <td>{{ $profiles->email }}</td>--}}
-{{--                                        <td>--}}
-{{--                                            <ul class="list-inline">--}}
-{{--                                                <li class="list-inline-item"><a href="" class="btn btn-sm btn-info" title="View"><i class="far fa-eye"></i></a> </li>--}}
-{{--                                                <li class="list-inline-item"><a href="{{ url('admin/profiles/'.$profiles->id.'/edit') }}" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-user-edit"></i></a> </li>--}}
-{{--                                                <li class="list-inline-item">--}}
-{{--                                                    <form class="" action="" method="post">--}}
-{{--                                                        @csrf--}}
-{{--                                                        @method('delete')--}}
-{{--                                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you want to delete {{ $profiles->first_name }} ?')"><i class="fas fa-user-times"></i></button>--}}
-{{--                                                    </form>--}}
-{{--                                                </li>--}}
-{{--                                            </ul>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
+                                    @php $i=0 @endphp
+                                    @foreach($projects as $project)
+                                        <tr>
+                                            <td class="text-dark">{{ sprintf('%02d',++$i) }}</td>
+                                            <td>{{ $project->title }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($project->description,50) }}</td>
+                                            <td>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><a href="" class="btn btn-sm btn-info" title="View"><i class="far fa-eye"></i></a> </li>
+                                                    <li class="list-inline-item"><a href="{{ url('admin/projects/'.$project->id.'/edit') }}" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-user-edit"></i></a> </li>
+                                                    <li class="list-inline-item">
+                                                        <form class="" action="{{ url('admin/projects/'.$project->id) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you want to delete  {{$project->title}}?')"><i class="fas fa-user-times"></i></button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -72,5 +75,8 @@
                 $('.alert').fadeOut('slow');
             },3000);
         });
+        $('#dataTable').dataTable( {
+            "lengthChange": false
+        } );
     </script>
 @endpush

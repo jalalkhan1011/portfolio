@@ -23,6 +23,7 @@ class Profile extends Model
         'github',
         'twitter',
         'address',
+        'about',
         'user_id'
     ];
 

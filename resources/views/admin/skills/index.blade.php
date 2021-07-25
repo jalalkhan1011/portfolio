@@ -101,5 +101,8 @@
                 $('.alert').fadeOut('slow');
             },3000);
         });
+        $('#dataTable').dataTable( {//hide length of showing entities on data table
+            "lengthChange": false
+        } );
     </script>
 @endpush
