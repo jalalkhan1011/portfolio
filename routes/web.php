@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\FrontendController;
 
 
 /*
@@ -17,10 +18,11 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/logout', 'SessionsController@logout');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/',[FrontendController::class,'index']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
