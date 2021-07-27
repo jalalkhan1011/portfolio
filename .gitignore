@@ -15,3 +15,4 @@ yarn-error.log
 /.vscode
 /public/uploads/profile_banner
 /public/uploads/profile_image
+/public/uploads/project_image
