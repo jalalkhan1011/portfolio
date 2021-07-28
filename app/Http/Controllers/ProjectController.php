@@ -51,7 +51,7 @@ class ProjectController extends Controller
         $data['user_id'] = auth()->user()->id;
 
         if($request->has('image')){
-            $data['image'] = $this->upload($request->image,'project_image');
+            $data['image'] = $this->uploadproject($request->image,'project_image');
         }
 
         Project::create($data);
@@ -105,7 +105,7 @@ class ProjectController extends Controller
 
         if($request->has('image')){
             $this->unlink($project->image);
-            $data['image'] = $this->upload($request->image,'project_image');
+            $data['image'] = $this->uploadproject($request->image,'project_image');
         }
 
         $project->update($data);

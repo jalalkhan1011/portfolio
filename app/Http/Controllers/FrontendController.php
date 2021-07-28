@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,8 +20,9 @@ class FrontendController extends Controller
         $profile = Profile::first();
         $user = User::first();
         $skills = Skill::all();
+        $projects = Project::all();
 //        dd($profile);
-        return view('welcome',compact('profile','user','skills'));
+        return view('welcome',compact('profile','user','skills','projects'));
     }
 
     /**

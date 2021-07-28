@@ -36,4 +36,12 @@ trait ImageTraits
             @unlink(public_path() . self::UPLOAD_DIR1 . $file);
         }
     }
+
+    private function uploadproject($file, $title='')
+    {
+        $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+        $file_name = $timestamp .'-'.$title .'.'. $file->getClientOriginalExtension();
+        Image::make($file)->resize(900,650)->save(public_path() . self::UPLOAD_DIR . $file_name);
+        return $file_name;
+    }
 }
