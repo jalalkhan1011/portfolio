@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FrontendController;
-
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,7 @@ use App\Http\Controllers\FrontendController;
 //    return view('welcome');
 //});
 Route::get('/',[FrontendController::class,'index']);
+Route::resource('/contacts',ContactController::class);
 
 Auth::routes();
 

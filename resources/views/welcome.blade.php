@@ -147,6 +147,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('frontend/css/styles.css') }}" rel="stylesheet" />
+    <link href="{{ asset('frontend/css/customInputfield.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customcss.css') }}" rel="stylesheet" />
 </head>
 <body id="page-top">
@@ -282,51 +283,56 @@
                 <!-- To make this form functional, sign up at-->
                 <!-- https://startbootstrap.com/solution/contact-forms-->
                 <!-- to get an API token!-->
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                @if(session('message'))
+                    <div class="alert {{ Session('alert-class','alert-success','alert-block') }}">
+{{--                        <button type="button" class="close" data-dissmiss="alert">x</button>--}}
+                        <strong>{{ session('message') }}</strong>
+                    </div>
+                @endif
+                <form action="{{ url('/contacts') }}"  method="post">
+                    @csrf
                     <!-- Name input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Full name</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                    <div class="form-group mb-3">
+                        <label for="full_name">Full name<span class="text-danger">*</span> </label>
+                        <input class="form-control form-control-sm" id="full_name" name="full_name" type="text" placeholder="Enter your name..." required />
+                        @if($errors->has('full_name'))
+                            <span class="form-text">
+                                <strong class="text-danger form-control-sm">{{ $errors->first('full_name') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <!-- Email address input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                    <div class="form-group mb-3">
                         <label for="email">Email address</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        <input class="form-control form-control-sm" id="email" name="email" type="email" placeholder="name@example.com" required />
+                        @if($errors->has('email'))
+                            <span class="form-text">
+                                <strong class="text-danger form-control-sm">{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <!-- Phone number input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                        <label for="phone">Phone number</label>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                    <div class="form-group mb-3">
+                        <label for="mobile">Phone number</label>
+                        <input class="form-control form-control-sm" id="mobile" name="mobile" type="number" placeholder="(123) 456-7890" required />
+                        @if($errors->has('mobile'))
+                            <span class="form-text">
+                                <strong class="text-danger form-control-sm">{{ $errors->first('mobile') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <!-- Message input-->
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                    <div class="form-group mb-3">
                         <label for="message">Message</label>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                        <textarea class="form-control form-control-sm" id="message" name="message" type="text" placeholder="Enter your message here..." style="height: 10rem" required></textarea>
+                        @if($errors->has('message'))
+                            <span class="form-text">
+                                <strong class="text-danger form-control-sm">{{ $errors->first('message') }}</strong>
+                            </span>
+                        @endif
                     </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+                    <button class="btn btn-primary btn-xl " id="submitButton" type="submit">Send</button>
                 </form>
             </div>
         </div>
@@ -369,15 +375,24 @@
 <div class="copyright py-4 text-center text-white">
     <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script>
+    $("document").ready(function (){
+        setTimeout(function (){
+            $('.alert').fadeOut('slow');
+        },3000);
+    });
+</script>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="{{ asset('frontend/js/scripts.js') }}js/scripts.js"></script>
+<script src="{{ asset('frontend/js/scripts.js') }}"></script>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <!-- * *                               SB Forms JS                               * *-->
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+{{--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>--}}
+
 </body>
 </html>
 

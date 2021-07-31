@@ -35,7 +35,21 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'full_name' => 'required',
+            'email' => 'required|email',
+            'mobile' => 'required',
+            'message' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        Contact::create($data);
+
+        session()->flash('message','Your message send successfully!');
+        session()->flash('alert-class','alert-success');
+
+        return redirect()->back();
     }
 
     /**

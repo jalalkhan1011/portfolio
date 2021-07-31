@@ -51,8 +51,8 @@
                                                     <input type="file" class="pt-1" name="profile_banner" onchange="loadFile1()">
                                                     @if($errors->has('profile_banner'))
                                                         <span class="form-text">
-                                                    <strong class="text-danger form-control-sm">{{ $errors->first('profile_banner') }}</strong>
-                                                </span>
+                                                            <strong class="text-danger form-control-sm">{{ $errors->first('profile_banner') }}</strong>
+                                                        </span>
                                                     @endif
                                                 </div>
                                             </div>
