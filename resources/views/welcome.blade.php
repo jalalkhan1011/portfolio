@@ -303,7 +303,7 @@
                     </div>
                     <!-- Email address input-->
                     <div class="form-group mb-3">
-                        <label for="email">Email address</label>
+                        <label for="email">Email address<span class="text-danger">*</span></label>
                         <input class="form-control form-control-sm" id="email" name="email" type="email" placeholder="name@example.com" required />
                         @if($errors->has('email'))
                             <span class="form-text">
@@ -313,7 +313,7 @@
                     </div>
                     <!-- Phone number input-->
                     <div class="form-group mb-3">
-                        <label for="mobile">Phone number</label>
+                        <label for="mobile">Phone number<span class="text-danger">*</span></label>
                         <input class="form-control form-control-sm" id="mobile" name="mobile" type="number" placeholder="(123) 456-7890" required />
                         @if($errors->has('mobile'))
                             <span class="form-text">
@@ -323,7 +323,7 @@
                     </div>
                     <!-- Message input-->
                     <div class="form-group mb-3">
-                        <label for="message">Message</label>
+                        <label for="message">Message<span class="text-danger">*</span></label>
                         <textarea class="form-control form-control-sm" id="message" name="message" type="text" placeholder="Enter your message here..." style="height: 10rem" required></textarea>
                         @if($errors->has('message'))
                             <span class="form-text">
@@ -391,7 +391,7 @@
 <!-- * *                               SB Forms JS                               * *-->
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-{{--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>--}}
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 </body>
 </html>

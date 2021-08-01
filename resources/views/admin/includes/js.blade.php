@@ -26,6 +26,10 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset(asset('backend/js/demo/datatables-demo.js')) }}"></script>
 
+<!-- validator js -->
+{{--<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>--}}
+<script src="{{ asset('backend/js/validate.min.js') }}"></script>
+
 <!--Vue js -->
 {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 @stack('js')

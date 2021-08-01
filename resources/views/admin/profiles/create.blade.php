@@ -26,7 +26,7 @@
                                     <strong>{{ session('message') }}</strong>
                                 </div>
                             @endif
-                                <form action="{{ url('admin/profiles') }}" method="post" enctype="multipart/form-data">
+                                <form id="profile" action="{{ url('admin/profiles') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-6">
@@ -154,6 +154,13 @@
 @endsection
 @push('js')
     <script>
+        $("document").ready(function (){
+            setTimeout(function (){
+                $('.alert').fadeOut('slow');
+            },3000);
+        });
+    </script>
+    <script>
         var loadFile = function () {
             var profile_image = document.getElementById('profile_image');
             profile_image.src = URL.createObjectURL(event.target.files[0]);
@@ -163,5 +170,57 @@
             var profile_banner = document.getElementById('profile_banner');
             profile_banner.src = URL.createObjectURL(event.target.files[0]);
         };
+    </script>
+    <script>
+        $(document).ready(function (){
+            $.validator.addMethod(
+                "regex",
+                function(value, element, regexp)
+                {
+                    if (regexp.constructor != RegExp)
+                        regexp = new RegExp(regexp);
+                    else if (regexp.global)
+                        regexp.lastIndex = 0;
+                    return this.optional(element) || regexp.test(value);
+                },
+                "Please check your input."
+            );
+            $('#profile').validate({
+                errorClass: "my-error-class",
+                rules:{
+                    "first_name" : {
+                        required:true,
+                    },
+                    "last_name" : {
+                        required:true,
+                    },
+                    "mobile" : {
+                        required:true,
+                        maxlength:11,
+                        minlength:11,
+                        regex:/^(?:\+?88)?01[1-9]\d{8}$/
+                    },
+                    "email" : {
+                        required:true,
+                        email: true
+                    },
+                    "profile_image" : {
+                        extension: "jpg|jpeg|png|gif"
+                    },
+                    "profile_banner" : {
+                        extension: "jpg|jpeg|png|gif"
+                    },
+                },
+                messages: {
+                    profile_image: {
+                        extension: "Please upload file in these format only ( JPG, JPEG, PNG,GIF )."
+                    },
+                    profile_banner:{
+                        extension: "Please upload file in these format only ( JPG, JPEG, PNG,GIF )."
+                    },
+
+                }
+            });
+        });
     </script>
 @endpush
