@@ -26,7 +26,7 @@
                                     <strong>{{ session('message') }}</strong>
                                 </div>
                             @endif
-                            <form action="{{ url('admin/skills/'.$skill->id) }}" method="post" enctype="multipart/form-data">
+                            <form id="skill" action="{{ url('admin/skills/'.$skill->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="row">
@@ -59,6 +59,18 @@
             setTimeout(function (){
                 $('.alert').fadeOut('slow');
             },3000);
+        });
+    </script>
+    <script>
+        $(document).ready(function (){
+            $('#skill').validate({
+                errorClass: "my-error-class",
+                rules:{
+                    "title" : {
+                        required:true,
+                    }
+                }
+            });
         });
     </script>
 @endpush

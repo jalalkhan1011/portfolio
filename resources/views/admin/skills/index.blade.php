@@ -68,7 +68,7 @@
                                     <strong>{{ session('message') }}</strong>
                                 </div>
                             @endif
-                            <form action="{{ url('admin/skills') }}" method="post" enctype="multipart/form-data">
+                            <form id="skill" action="{{ url('admin/skills') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-lg-12">
@@ -104,5 +104,17 @@
         $('#dataTable').dataTable( {//hide length of showing entities on data table
             "lengthChange": false
         } );
+    </script>
+    <script>
+        $(document).ready(function (){
+            $('#skill').validate({
+                errorClass: "my-error-class",
+                rules:{
+                    "title" : {
+                        required:true,
+                    }
+                }
+            });
+        });
     </script>
 @endpush
