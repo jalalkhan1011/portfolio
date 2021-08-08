@@ -73,7 +73,7 @@
                                 <div class="row">
                                     <div class="form-group col-lg-12">
                                         <label for="title">Title<span class="text-danger">*</span> </label>
-                                        <input type="text" class="form-control form-control-sm" name="title" value="{{ old('title') }}" placeholder="Ex: Web development" required>
+                                        <input type="text" class="form-control form-control-sm title" name="title" value="{{ old('title') }}" placeholder="Ex: Web development" required>
                                         @if($errors->has('title'))
                                             <span class="form-text">
                                                     <strong class="text-danger form-control-sm">{{ $errors->first('title') }}</strong>
@@ -110,7 +110,7 @@
             $('#skill').validate({
                 errorClass: "my-error-class",
                 rules:{
-                    "title" : {
+                    title : {
                         required:true,
                     }
                 }

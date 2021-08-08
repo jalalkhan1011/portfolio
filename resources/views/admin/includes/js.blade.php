@@ -3,6 +3,7 @@
 {{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>--}}
 {{--<script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>--}}
 {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+{{--<script src="{{ asset('backend/js/validate.min.js') }}"></script>--}}
 <script src="{{ asset('backend/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 

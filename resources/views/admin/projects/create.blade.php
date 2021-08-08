@@ -87,13 +87,13 @@
             $('#project').validate({
                 errorClass: "my-error-class",
                 rules:{
-                    "image" : {
+                    image : {
                         extension: "jpg|jpeg|png|gif"
                     },
-                    "title" : {
+                    title : {
                         required: true
                     },
-                    "description" : {
+                    description : {
                         required: true
                     }
                 },

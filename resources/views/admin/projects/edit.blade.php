@@ -26,7 +26,7 @@
                                     <strong>{{ session('message') }}</strong>
                                 </div>
                             @endif
-                            <form action="{{ url('admin/projects/'.$project->id) }}" method="post" enctype="multipart/form-data">
+                            <form id="project" action="{{ url('admin/projects/'.$project->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="row">
@@ -82,5 +82,28 @@
             var profile_image = document.getElementById('image');
             profile_image.src = URL.createObjectURL(event.target.files[0]);
         };
+    </script>
+    <script>
+        $(document).ready(function (){
+            $('#project').validate({
+                errorClass: "my-error-class",
+                rules:{
+                    image : {
+                        extension: "jpg|jpeg|png|gif"
+                    },
+                    title : {
+                        required: true
+                    },
+                    description : {
+                        required: true
+                    }
+                },
+                messages: {
+                    image: {
+                        extension: "Please upload file in these format only ( JPG, JPEG, PNG,GIF )."
+                    },
+                }
+            });
+        });
     </script>
 @endpush
