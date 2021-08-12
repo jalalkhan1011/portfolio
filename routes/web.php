@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/admin/profiles',ProfileController::class);//resource route
     Route::resource('/admin/skills',SkillController::class);
     Route::resource('/admin/projects',ProjectController::class);
+    Route::resource('/admin/contacts',ContactController::class);
 });
 
 Route::get('{any}', function () {

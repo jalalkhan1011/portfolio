@@ -39,6 +39,7 @@
                 <a class="collapse-item {{ request()->is('admin/profiles') ? 'active' : '' }}" href="{{ url('admin/profiles') }}">Profiles</a>
                 <a class="collapse-item {{ request()->is('admin/skills') ? 'active' : '' }}" href="{{ url('admin/skills') }}">Skills</a>
                 <a class="collapse-item {{ request()->is('admin/projects') ? 'active' : '' }}" href="{{ url('admin/projects') }}">Projects</a>
+                <a class="collapse-item {{ request()->is('admin/contacts') ? 'active' : '' }}" href="{{ url('admin/contacts') }}">Messages</a>
             </div>
         </div>
     </li>
