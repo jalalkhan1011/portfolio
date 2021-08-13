@@ -31,6 +31,7 @@
                                         <th class="text-dark">Name</th>
                                         <th class="text-dark">Email</th>
                                         <th class="text-dark">Mobile</th>
+                                        <th class="text-dark">Message</th>
                                         <th class="text-dark">Action</th>
                                     </tr>
                                     </thead>
@@ -42,21 +43,51 @@
                                             <td>{{ $contact->full_name }}</td>
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->mobile }}</td>
-                                            <td>{{ \Illuminate\Support\Str::limit($contact->message,50) }}</td>
-{{--                                            <td>--}}
-{{--                                                <ul class="list-inline">--}}
-{{--                                                    <li class="list-inline-item"><a href="" class="btn btn-sm btn-info" title="View"><i class="far fa-eye"></i></a> </li>--}}
-{{--                                                    <li class="list-inline-item"><a href="{{ url('admin/projects/'.$project->id.'/edit') }}" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-user-edit"></i></a> </li>--}}
-{{--                                                    <li class="list-inline-item">--}}
-{{--                                                        <form class="" action="{{ url('admin/projects/'.$project->id) }}" method="post">--}}
-{{--                                                            @csrf--}}
-{{--                                                            @method('delete')--}}
-{{--                                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you want to delete  {{$project->title}}?')"><i class="fas fa-user-times"></i></button>--}}
-{{--                                                        </form>--}}
-{{--                                                    </li>--}}
-{{--                                                </ul>--}}
-{{--                                            </td>--}}
+                                            <td>{{ \Illuminate\Support\Str::limit($contact->message,50) }}.....</td>
+                                            <td>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><button class="btn btn-sm btn-primary" title="Send" data-toggle="modal" data-target=".messagemodal{{ $contact->id }}"><i class="fas fa-envelope"></i> </button> </li>
+                                                    <li class="list-inline-item">
+                                                        <form class="" action="{{ url('admin/contacts/'.$contact->id) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you want to delete  {{$contact->mobile}}?')"><i class="fas fa-user-times"></i></button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </td>
                                         </tr>
+                                        <div class="modal fade messagemodal{{ $contact->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                                                <input type="text" value="{{ $contact->email }}" name="email" class="form-control" id="recipient-name" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="col-form-label">User Message:</label>
+                                                                <textarea class="form-control form-control-sm" id="message-text" rows="10" readonly>{{ $contact->message }}</textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="col-form-label">Replay Message:</label>
+                                                                <textarea class="form-control form-control-sm" id="message-text" rows="10"></textarea>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Send message</button>
+                                                    </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                     </tbody>
                                 </table>

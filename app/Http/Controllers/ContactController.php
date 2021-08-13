@@ -96,6 +96,11 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        session()->flash('message','Message Deleted successfully!');
+        session()->flash('alert-class','alert-danger');
+
+        return redirect()->back();
     }
 }
