@@ -7,6 +7,7 @@
     <meta name="author" content="" />
     <title>Freelancer - Start Bootstrap Theme</title>
     @include('user.includes.css')
+    @stack('css')
 </head>
 <body id="page-top">
 <!-- Navigation-->
@@ -21,7 +22,7 @@
 
 
 @include('user.includes.js')
-
+@stack('js')
 </body>
 </html>
 

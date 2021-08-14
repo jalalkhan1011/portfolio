@@ -15,6 +15,7 @@ class Contact extends Model
         'full_name',
         'email',
         'mobile',
-        'message'
+        'message',
+        'replay'
     ];
 }

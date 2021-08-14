@@ -88,6 +88,7 @@
                 errorClass: "my-error-class",
                 rules:{
                     image : {
+                        required : true,
                         extension: "jpg|jpeg|png|gif"
                     },
                     title : {

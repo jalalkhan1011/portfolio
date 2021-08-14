@@ -97,7 +97,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:jpeg,jpg,png,gif'
+            'image' => 'mimes:jpeg,jpg,png,gif'
         ]);
 
         $data = $request->all();
