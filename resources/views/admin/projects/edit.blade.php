@@ -34,7 +34,7 @@
                                         <div class="row">
                                             <div class="col-lg-3">
                                                 <label for="image">Project Image</label>
-                                                <img id="image" class="image-preview" src="{{ !empty($project->image) ? asset('uploads/project_image/'.$project->image) : asset('default/banner_preview.png') }}">
+                                                <img id="image" class="image-preview" src="{{ File::exists('uploads/project_image/'.$project->image) ? asset('uploads/project_image/'.$project->image) : asset('default/banner_preview.png') }}">
                                                 <input type="file" class="pt-1" name="image"  onchange="loadFile()">
                                                 @if($errors->has('image'))
                                                     <span class="form-text">
