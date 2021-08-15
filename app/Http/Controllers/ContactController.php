@@ -52,13 +52,13 @@ class ContactController extends Controller
 
         $admin = User::first();
 
-
+        $userName = $data['full_name'];
         $userMail = $data['email'];
         $userMessage = $data['message'];
 
         Contact::create($data);
 
-        \Mail::to($admin['email'])->send(new ContactMail($admin,$userMail,$userMessage));
+        \Mail::to($admin['email'])->send(new ContactMail($admin,$userMail,$userMessage,$userName));
 
         session()->flash('message','Your message send successfully!');
         session()->flash('alert-class','alert-success');
