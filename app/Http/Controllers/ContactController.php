@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\User;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -47,6 +49,16 @@ class ContactController extends Controller
         $data = $request->all();
 
         Contact::create($data);
+
+        $admin = User::first();
+
+
+        $userMail = $data['email'];
+        $userMessage = $data['message'];
+
+        Contact::create($data);
+
+        \Mail::to($admin['email'])->send(new ContactMail($admin,$userMail,$userMessage));
 
         session()->flash('message','Your message send successfully!');
         session()->flash('alert-class','alert-success');

@@ -16,9 +16,15 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $admin;
+    public $userMail;
+    public $userMessage;
+    public function __construct($admin,$userMail,$userMessage)
     {
-        //
+        $this->admin = $admin;
+        $this->userMail =  $userMail;
+        $this->userMessage = $userMessage;
     }
 
     /**
@@ -28,6 +34,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mail.contactMail',['admin' => $this->admin,'userMail' => $this->userMail,'userMessage' => $this->userMessage]);
     }
 }

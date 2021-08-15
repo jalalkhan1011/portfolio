@@ -3,7 +3,7 @@
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5 image-round"  src="{{ !empty($profile->profile_image) ? asset('uploads/profile_image/'.$profile->profile_image) : asset('frontend/assets/img/avataaars.svg') }}" alt="..." />
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">{{$user->name}}</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">{{ !empty($user->name) ? $user->name : 'Name not found' }}</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
