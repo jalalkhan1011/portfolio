@@ -349,14 +349,14 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>From:<a href="mailto:{{ $userMail }}">{{ $userMail }}</a></p>
                                         <p></p>
-                                        <p>Hi {{ $admin->name }},</p>
-                                        <p>{{ $userMessage }}</p>
-                                        <p></p>
+                                        <p>Hi {{ $userDetails->full_name }},</p><br>
+                                        <p>Your message</p><br>
+                                        <p>{{ $userDetails->message }}</p><br>
+                                        <p>Reply message</p>
                                         <p>
                                             Your regards,<br>
-                                            {{ $userName }}
+                                            {{ $admin->email }}
                                         </p>
                                     </td>
                                 </tr>
@@ -374,3 +374,4 @@
 </table>
 </body>
 </html>
+

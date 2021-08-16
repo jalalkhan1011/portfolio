@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\User;
 use App\Mail\ContactMail;
+use App\Mail\ReplayMail;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -112,6 +113,28 @@ class ContactController extends Controller
 
         session()->flash('message','Message Deleted successfully!');
         session()->flash('alert-class','alert-danger');
+
+        return redirect()->back();
+    }
+
+    public function replayMessage(Request $request){
+        $request->validate([
+            'replay' => 'required'
+        ]);
+
+        $admin = User::first();
+
+        $userDetails = Contact::findOrFail($request->contact_id);
+
+        $userDetails->update([
+            'replay' => $request->replay
+        ]);
+
+
+        \Mail::to($userDetails['email'])->send(new ReplayMail($admin,$userDetails));
+
+        session()->flash('message','Message Send successfully !');
+        session()->flash('alert-class','alert-success');
 
         return redirect()->back();
     }

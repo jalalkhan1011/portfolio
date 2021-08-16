@@ -43,7 +43,7 @@
                                             <td>{{ $contact->full_name }}</td>
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->mobile }}</td>
-                                            <td>{{ \Illuminate\Support\Str::limit($contact->message,50) }}.....</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($contact->message,10) }}.....</td>
                                             <td>
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item"><button class="btn btn-sm btn-primary" title="Send" data-toggle="modal" data-target=".messagemodal{{ $contact->id }}"><i class="fas fa-envelope"></i> </button> </li>
